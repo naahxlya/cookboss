@@ -58,7 +58,7 @@ function RecipesPage() {
   }, [data, category, difficulty, q, sort]);
 
   const setParam = (patch: Partial<Search>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }) as Search });
+    navigate({ search: (prev: Search) => ({ ...prev, ...patch }) });
 
   return (
     <Layout>
