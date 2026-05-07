@@ -13,10 +13,10 @@ import { RecipeCard } from "@/components/cookboss/RecipeCard";
 import { LoadingSpinner } from "@/components/cookboss/LoadingSpinner";
 import { CATEGORIES, DIFFICULTIES } from "@/components/cookboss/RecipeForm";
 
-type Search = { category?: string; difficulty?: string; q?: string; sort?: string };
+type SearchParams = { category?: string; difficulty?: string; q?: string; sort?: string };
 
 export const Route = createFileRoute("/recipes/")({
-  validateSearch: (s: Record<string, unknown>): Search => ({
+  validateSearch: (s: Record<string, unknown>): SearchParams => ({
     category: typeof s.category === "string" ? s.category : undefined,
     difficulty: typeof s.difficulty === "string" ? s.difficulty : undefined,
     q: typeof s.q === "string" ? s.q : undefined,
@@ -57,8 +57,8 @@ function RecipesPage() {
     return list;
   }, [data, category, difficulty, q, sort]);
 
-  const setParam = (patch: Partial<Search>) =>
-    navigate({ search: (prev: Search) => ({ ...prev, ...patch }) });
+  const setParam = (patch: Partial<SearchParams>) =>
+    navigate({ search: (prev: SearchParams) => ({ ...prev, ...patch }) });
 
   return (
     <Layout>
